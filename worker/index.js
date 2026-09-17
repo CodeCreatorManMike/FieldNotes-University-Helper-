@@ -11,6 +11,109 @@ const TIME_RE = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
 function isPlainObject(x) { return typeof x === 'object' && x !== null && !Array.isArray(x); }
 function isDateStr(s) { if (typeof s !== 'string' || !DATE_RE.test(s)) return false; const d = new Date(s + 'T00:00:00Z'); return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s; }
 
+// ---- ranking engine (mirrors dist/portal.js: topicScore/reviewScore/dailyPlan) ----
+const dayKey = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+const parseDay = (s) => new Date(s + 'T12:00:00Z');
+const plusDays = (s, n) => { const d = parseDay(s); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+function weekDate(sem, w) { if (sem === 1) return plusDays('2026-09-21', (w - 1) * 7); return plusDays('2027-01-25', (w - 1) * 7 + (w > 8 ? 14 : 0)); }
+function assessWindow(a) { if (a.id === 'm-exam') return ['2027-05-04', '2027-05-14']; const start = weekDate(a.sem, a.week); return a.day === null ? [start, plusDays(start, 4)] : [plusDays(start, a.day), plusDays(start, a.day)]; }
+function progressOf(state, id) { return state.progress[id] || { status: 'new', checks: [], notes: '' }; }
+function covered(state, t) { const p = progressOf(state, t.id); const checks = new Set(p.checks || []); return t.content.reduce((n, _, i) => n + (checks.has(i) ? 1 : 0), 0); }
+function confidenceOf(state, code) { return (state.settings.diagnostic || {})[code] ?? 1; }
+function modPriorityOf(state, code) { return (state.settings.priorities || {})[code] ?? 1; }
+function topicConfidenceOf(state, t) { const p = progressOf(state, t.id); return p.confidence ?? confidenceOf(state, t.module); }
+function estMinutes(t) { return Math.max(15, Math.min(60, (t.content.length || 3) * 4)); }
+function daysUntil(dateStr) { return Math.round((parseDay(dateStr) - parseDay(dayKey())) / 864e5); }
+function nextAssessmentFor(plan, state, code) {
+  const scored = plan.assessments.filter(a => a.module === code).map(a => { const p = progressOf(state, 'assessment-' + a.id); if (p.submitted) return null; const end = p.due || assessWindow(a)[1]; return { a, date: end }; }).filter(Boolean);
+  scored.sort((x, y) => x.date.localeCompare(y.date));
+  return scored[0] || null;
+}
+function allSessions(state, timetable) {
+  const events = [...(timetable.events || [])];
+  for (const e of state.entries) {
+    if (e.category !== 'event' || e.resolved) continue;
+    const until = e.repeat === 'weekly' ? e.until : e.date;
+    for (let d = e.date, n = 0; d <= until && n < 60; d = plusDays(d, 7), n++) {
+      const offset = (d >= '2026-10-25' && d < '2027-03-28') ? '+00:00' : '+01:00';
+      events.push({ module: e.topic, start: `${d}T${e.startTime}:00${offset}` });
+    }
+  }
+  return events;
+}
+function nextSessionFor(state, timetable, code, now) {
+  const matches = allSessions(state, timetable).filter(e => e.module === code && e.start >= now).sort((x, y) => x.start.localeCompare(y.start));
+  return matches[0] || null;
+}
+function assessmentBoost(plan, state, timetable, t, score, reason, now) {
+  const near = nextAssessmentFor(plan, state, t.module);
+  if (near) { const d = daysUntil(near.date); if (d <= 21) { score += d <= 0 ? 42 : Math.max(0, 40 - d * 1.9); reason.push(d <= 0 ? `${near.a.title} deadline has passed — resolve or update it` : `${near.a.title} is due in ${d} day${d === 1 ? '' : 's'}`); } }
+  const ns = nextSessionFor(state, timetable, t.module, now);
+  if (ns) { const d = Math.floor((new Date(ns.start) - new Date(now)) / 864e5); if (d <= 2) { score += 16; reason.push(`your next ${t.module} session is ${d <= 0 ? 'today' : d === 1 ? 'tomorrow' : 'in ' + d + ' days'}`); } }
+  return score;
+}
+function topicScore(plan, state, timetable, t, now) {
+  const p = progressOf(state, t.id);
+  if (p.known || p.status === 'solid') return null;
+  if (p.snoozed && p.snoozed >= dayKey()) return null;
+  const total = t.content.length || 1, done = covered(state, t), gap = 1 - done / total;
+  let score = 8 * gap + 2;
+  score *= [0.5, 1, 1.4, 2][p.priority ?? 1];
+  score *= [0.55, 1, 1.3, 1.7][modPriorityOf(state, t.module)];
+  score += [14, 7, 3, 0][topicConfidenceOf(state, t)];
+  const reason = [];
+  score = assessmentBoost(plan, state, timetable, t, score, reason, now);
+  if (done > 0 && done < total) reason.push(`${done} of ${total} content items already covered`);
+  else if (done === 0) reason.push('not started yet');
+  const pr = p.priority ?? 1;
+  if (pr >= 2) reason.push('you flagged this as ' + ['low', 'normal', 'high', 'urgent'][pr].toLowerCase() + ' priority');
+  if (topicConfidenceOf(state, t) <= 1) reason.push('you rated your confidence here as low');
+  return { topic: t, score, reason, minutes: estMinutes(t), kind: 'learn' };
+}
+function reviewScore(plan, state, timetable, t, now) {
+  const p = progressOf(state, t.id);
+  if (p.known || p.status !== 'solid') return null;
+  if (!p.reviewDue || p.reviewDue > dayKey()) return null;
+  const overdue = daysUntil(p.reviewDue);
+  let score = 6 + Math.min(20, Math.max(0, -overdue) * 0.6);
+  score *= [0.5, 1, 1.4, 2][p.priority ?? 1];
+  score *= [0.55, 1, 1.3, 1.7][modPriorityOf(state, t.module)];
+  const reviews = p.reviews || 1;
+  const reason = [overdue < 0 ? `review was due ${-overdue} day${overdue === -1 ? '' : 's'} ago` : 'review is due today', `marked solid, reviewed ${reviews} time${reviews === 1 ? '' : 's'}`];
+  score = assessmentBoost(plan, state, timetable, t, score, reason, now);
+  return { topic: t, score, reason, minutes: Math.max(10, Math.round(estMinutes(t) * 0.4)), kind: 'review' };
+}
+function bestNext(plan, state, timetable, now, limit = 30) { return plan.topics.map(t => topicScore(plan, state, timetable, t, now)).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, limit); }
+function reviewQueue(plan, state, timetable, now, limit = 15) { return plan.topics.map(t => reviewScore(plan, state, timetable, t, now)).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, limit); }
+function dailyPlan(plan, state, timetable, now) {
+  const budget = state.settings.dailyMinutes || 120;
+  const picks = [...bestNext(plan, state, timetable, now), ...reviewQueue(plan, state, timetable, now)].sort((a, b) => b.score - a.score);
+  const result = []; let used = 0;
+  for (const item of picks) { if (result.length && used + item.minutes > budget) continue; result.push(item); used += item.minutes; if (used >= budget) break; }
+  if (!result.length && picks.length) result.push(picks[0]);
+  return { plan: result, used, budget };
+}
+function streakDays(state) {
+  const days = new Set(state.entries.filter(e => ['study', 'reflection', 'task'].includes(e.type) && ((e.minutes || 0) > 0 || e.type !== 'task')).map(e => e.date));
+  let n = 0, d = dayKey();
+  if (!days.has(d)) d = plusDays(d, -1);
+  while (days.has(d)) { n++; d = plusDays(d, -1); }
+  return n;
+}
+function weekMinutes(state) {
+  const monday = plusDays(dayKey(), -((parseDay(dayKey()).getUTCDay() + 6) % 7));
+  return state.entries.filter(e => e.type !== 'task' && e.date >= monday && e.date <= plusDays(monday, 6)).reduce((n, e) => n + (e.minutes || 0), 0);
+}
+function nextPayload(plan, state, timetable) {
+  const now = new Date().toISOString();
+  const { plan: picks, used, budget } = dailyPlan(plan, state, timetable, now);
+  const ser = (item) => ({ id: item.topic.id, module: item.topic.module, title: item.topic.title, reason: item.reason, minutes: item.minutes, kind: item.kind });
+  const done = plan.topics.reduce((n, t) => n + covered(state, t), 0);
+  const total = plan.topics.reduce((n, t) => n + t.content.length, 0);
+  const openTasks = state.entries.filter(e => e.type === 'task' && !e.resolved && e.category !== 'event').length;
+  return { generatedAt: now, top: picks[0] ? ser(picks[0]) : null, plan: picks.map(ser), planUsedMinutes: used, dailyTarget: budget, streak: streakDays(state), weekMinutes: weekMinutes(state), coverage: { done, total }, openTasks };
+}
+
 function validateRecord(kind, data) {
   if (!isPlainObject(data)) throw new Error('Expected an object.');
   if (kind === 'progress') {
@@ -87,6 +190,16 @@ export default {
     try {
       if (request.method === 'GET') {
         if (url.pathname === '/api/state') return json(await readState(env.DB));
+        if (url.pathname === '/api/next') {
+          const state = await readState(env.DB);
+          const [planRes, timetableRes] = await Promise.all([
+            env.ASSETS.fetch(new Request(url.origin + '/plan.json')),
+            env.ASSETS.fetch(new Request(url.origin + '/timetable.json')),
+          ]);
+          const plan = await planRes.json();
+          const timetable = await timetableRes.json();
+          return json(nextPayload(plan, state, timetable));
+        }
         if (url.pathname === '/api/export') {
           const stamp = new Date().toISOString().replace(/[-:]/g, '').replace('T', '-').slice(0, 15);
           return json(await readState(env.DB), 200, { attachment: `study-backup-${stamp}.json` });
