@@ -1,4 +1,5 @@
 /* Coverage derived from the supplied 2026–27 guides. Preparation is a personal planning suggestion. */
+/* INDUCTION.liveLinks captured from a real Moodle session (course id 7116) — actual hosted pages, not local text extracts. Log back in on Moodle before opening them. */
 const P={modules:[],topics:[],assessments:[],checked:'2026-09-17',start:'2026-09-21'};
 function module(code,title,term,source,prep,info){P.modules.push({code,title,term,source,prep,info});}
 function topic(id,module,title,sem,weeks,content,prep,pcc='',source='',work=''){P.topics.push({id,module,title,sem,weeks,content:content.split('|'),prep:prep?prep.split('|'):[],pcc,source,work});}
@@ -10,6 +11,15 @@ module('MATH4004','Mathematics for Computing',2,'Module Guide 2026-27.pdf.txt',[
 module('COMP4005','Object Oriented Programming',2,'Subject Introduction Slides - Year 1.pdf.txt',['Locate the module guide once published','Review Python classes from PCC chapter 9','Revisit the Java introduction in COMP4004 Week 11'], 'Confirmed by the Year 1 induction diagram. Semester 2 is indicated by the COMP4004 Java bridge. No specific guide, weekly programme or assessment dates were supplied. Classes, objects and methods are preparation suggestions until the guide is available.');
 module('COMP4006','Professional Programming Practice',2,'Subject Introduction Slides - Year 1.pdf.txt',['Confirm the registered module title and timetable','Locate the guide and assessments when published','Review version control, debugging and testing resources'], 'The Year 1 induction identifies COMP4006; its title varies in supplied diagrams. Semester 2 placement is provisional pending your timetable. Detailed content and assessment dates are missing. IDEs, debugging, code organisation and version control are broad programme-level descriptions, not a verified weekly syllabus.');
 module('INDUCTION','Academic practice & university admin',0,'Computer Session Slides.pdf.txt',['Complete induction Moodle activities','Confirm module registration and attendance access','Find your academic adviser and support contacts'], 'Track the non-lecture work here: academic integrity, annual AI training, lab safety, backups, adviser meetings, careers and placement preparation. Opportunity listings from 2016–18 are historical.');
+P.modules.find(m=>m.code==='INDUCTION').liveLinks=[
+  ['ECM Computing Events and Student Opportunities','https://moodle.brookes.ac.uk/course/view.php?id=7116','The live Moodle course — placements, opportunities and the forum below.'],
+  ['Jobs, Placements and other opportunities (forum)','https://moodle.brookes.ac.uk/mod/forum/view.php?id=16565','Where new placement/graduate-role posts actually land.'],
+  ['Workshop and Presentation Recordings (Panopto)','https://moodle.brookes.ac.uk/mod/lti/view.php?id=1611550',''],
+  ['ECM Events Calendar','https://moodle.brookes.ac.uk/mod/url/view.php?id=183783',''],
+  ['ECM News','https://moodle.brookes.ac.uk/mod/url/view.php?id=183966',''],
+  ['Faculty Events','https://moodle.brookes.ac.uk/mod/url/view.php?id=183965',''],
+  ['Computing Placements site','https://moodle.brookes.ac.uk/course/view.php?id=25568','Separate Moodle course for the placement year.'],
+];
 
 topic('p-basics','COMP4004','Programming foundations',1,[1],'Constants and variables|Numbers, strings and expressions|Input and output|Sequence and basic program structure|Basic data representation|Problem specification and pseudocode','Refresh PCC chapter 2|Check the required Python/Codio environment','PCC 2e: chapters 1–2','Module Handbook.docx.txt','Complete the first Python lab exercises and weekly quiz by the end of the week.');
 topic('p-conditions','COMP4004','Conditions & Boolean expressions',1,[2],'Comparison expressions|Boolean operators: and, or, not|Selection and conditional statements|Translating conditions from a problem statement','Review variables and expressions','PCC 2e: chapter 5','Module Handbook.docx.txt','Finish lab exercises and quiz by the end of the Thursday lab. Two extra portfolio exercises are described in the guide.');
