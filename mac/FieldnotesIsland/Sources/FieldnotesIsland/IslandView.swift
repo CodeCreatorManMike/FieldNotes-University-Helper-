@@ -39,7 +39,7 @@ struct IslandView: View {
             Button("Refresh now") { Commands.refresh() }
             Button(LaunchAtLogin.isEnabled ? "Disable launch at login" : "Launch at login") { Commands.toggleLogin() }
             Divider()
-            Button("Quit Fieldnotes Island") { Commands.quit() }
+            Button("Quit UniFlow") { Commands.quit() }
         }
     }
 
@@ -47,11 +47,11 @@ struct IslandView: View {
         HStack(spacing: 8) {
             ZStack {
                 RoundedRectangle(cornerRadius: 7, style: .continuous)
-                    .fill(Color.white)
+                    .fill(LinearGradient(colors: [Color(red: 0.435, green: 0.827, blue: 0.690), Color(red: 0.357, green: 0.549, blue: 1.0)], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .frame(width: 22, height: 22)
-                Text("f.").font(.system(size: 12, weight: .bold, design: .serif)).italic().foregroundStyle(.black)
+                Text("U").font(.system(size: 12, weight: .bold, design: .rounded)).foregroundStyle(.white)
             }
-            Text("fieldnotes").font(.system(size: 13, weight: .semibold)).foregroundStyle(.white.opacity(0.8))
+            Text("UniFlow").font(.system(size: 13, weight: .semibold)).foregroundStyle(.white.opacity(0.8))
             Spacer()
             Circle().fill(state.isReachable ? Color.green : Color.red).frame(width: 6, height: 6)
         }
@@ -85,7 +85,7 @@ struct IslandView: View {
             if let top = state.next?.top {
                 Button { FieldnotesAPI.openRoute("topic/\(top.id)") } label: {
                     VStack(alignment: .leading, spacing: 5) {
-                        Text(top.module).font(.system(size: 11.5, weight: .semibold)).foregroundStyle(Color(red: 0.71, green: 0.95, blue: 0.49))
+                        Text(top.module).font(.system(size: 11.5, weight: .semibold)).foregroundStyle(Color(red: 0.435, green: 0.827, blue: 0.690))
                         Text(top.title).font(.system(size: 18, weight: .bold)).foregroundStyle(.white).lineLimit(2)
                         Text(top.reason.first ?? "Ready to start").font(.system(size: 12)).foregroundStyle(.white.opacity(0.65)).lineLimit(upNextHovered ? 4 : 1)
                         if upNextHovered, top.reason.count > 1 {
@@ -126,7 +126,7 @@ struct IslandView: View {
                     Spacer(minLength: 0)
                     RingProgressView(
                         progress: n.dailyTarget > 0 ? Double(n.planUsedMinutes) / Double(n.dailyTarget) : 0,
-                        color: Color(red: 0.71, green: 0.95, blue: 0.49)
+                        color: Color(red: 0.435, green: 0.827, blue: 0.690)
                     )
                 }
                 VStack(alignment: .leading, spacing: 5) {
@@ -139,7 +139,7 @@ struct IslandView: View {
                         ZStack(alignment: .leading) {
                             RoundedRectangle(cornerRadius: 3).fill(Color.white.opacity(0.14)).frame(height: 6)
                             RoundedRectangle(cornerRadius: 3)
-                                .fill(Color(red: 0.71, green: 0.95, blue: 0.49))
+                                .fill(Color(red: 0.435, green: 0.827, blue: 0.690))
                                 .frame(width: geo.size.width * min(1, n.dailyTarget > 0 ? Double(n.planUsedMinutes) / Double(n.dailyTarget) : 0), height: 6)
                         }
                     }

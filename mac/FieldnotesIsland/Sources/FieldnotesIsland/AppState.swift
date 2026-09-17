@@ -78,7 +78,7 @@ enum Urgency {
     var color: (Double, Double, Double) {
         switch self {
         case .none: return (0.55, 0.6, 0.65)
-        case .normal: return (0.71, 0.95, 0.49)
+        case .normal: return (0.435, 0.827, 0.690)
         case .soon: return (0.98, 0.75, 0.3)
         case .critical: return (0.95, 0.35, 0.35)
         }

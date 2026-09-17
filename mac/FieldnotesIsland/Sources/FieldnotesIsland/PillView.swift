@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The always-visible idle indicator: a ring that fills as today's plan
 /// fills (planUsedMinutes / dailyTarget), colored by urgency, with a black
-/// disc and white "f." mark at its center for contrast against anything
+/// disc and white "U" mark at its center for contrast against anything
 /// behind it. Hover shows a native tooltip with the top task; hovering the
 /// edge/pill expands the full panel (handled by EdgeWatcher, not here).
 struct PillView: View {
@@ -25,9 +25,8 @@ struct PillView: View {
             Circle()
                 .fill(Color.black)
                 .frame(width: 38, height: 38)
-            Text("f.")
-                .font(.system(size: 16, weight: .bold, design: .serif))
-                .italic()
+            Text("U")
+                .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
         }
         .frame(width: 54, height: 54)
