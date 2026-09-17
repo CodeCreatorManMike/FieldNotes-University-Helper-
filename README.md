@@ -1,7 +1,12 @@
 # Field Notes University Helper
 An ambient macOS companion that reads your calendar and coursework, then decides — not just displays — what you should be doing right now.
 
-## Running locally on your Mac
+Three things live in this repo, all talking to the same data:
+- **The web app** (`dist/` + `server.py`) — the full organiser: modules, week planner, tasks, journal, source library, settings.
+- **The island** (`mac/FieldnotesIsland`) — a native macOS presence that's always on screen, showing the single most important thing to do right now without opening anything.
+- **A Cloudflare Worker** (`worker/`) — optional, makes the same thing reachable from your phone.
+
+## Running the web app locally
 
 Double-click `Start Study Portal.command`, or:
 
@@ -11,36 +16,48 @@ python3 server.py
 
 Open http://127.0.0.1:8765/. Data lives in `storage/study.sqlite3`, never leaves the machine.
 
-## The island (macOS menu-bar-free companion)
+### How "what's next" gets decided
 
-`mac/FieldnotesIsland` is a small native Swift app that lives at the top-left corner of your screen — not in the Dock, not in the menu bar.
+Every topic gets a score from: its coverage gap (how much of it you haven't ticked off), a priority you can set per-topic and per-module, how confident you've rated yourself in that module (or that specific topic — an override), and how close its linked assessment deadline or next timetabled session is. Marking a topic solid schedules a spaced review (1/3/7/16/35/60/90 days later) that resurfaces it separately from new learning. The whole thing is one function, `dailyPlan()` in `dist/portal.js`, mirrored in `server.py` (`next_payload`) and `worker/index.js` (`nextPayload`) so the web UI, the island, and a deployed Worker all agree on the same answer. See `#focus` in the web app for the full ranked queue, or the "Calibrate this module" panel on any module page to tune it.
 
-**Always on:** a small colored pill sits docked in the corner at all times — its dot is green when you're on track, amber when something's due in a day or two, red when a deadline's passed or due today. Glanceable state without opening anything.
+### Local snapshots vs. real Moodle pages
 
-**Hover to expand:** move your mouse to the top-left edge (or onto the pill itself) and it grows into a glass panel: the six main pages (Today, Modules, Week, Tasks, Journal, Settings) as one-click links into the web app, plus a live "up next" card — same priority/deadline/calendar-aware ranking engine as the web app's `#focus` queue, hover it for the full reasoning. Below that: today's coverage, day streak, and a progress bar against your daily minutes target. Move away and it shrinks back to the pill.
+Most content in here (module guides, lecture notes, past papers) is a local text extract in `dist/sources/` — captured once, works offline, but goes stale and can't be logged into. The INDUCTION module page also has a "Live on Moodle" panel that links to actual hosted pages (the placements/opportunities course, its forum, Panopto recordings) instead of a snapshot — those came from a HAR capture of a real Moodle session (`dist/plan.js`, `INDUCTION.liveLinks`). To add real links for another module: log into Moodle, open dev tools → Network, browse the module's course page, export as HAR, then pull out the `mod/`/`course/` URLs the same way (see the git history on that file for the exact approach).
 
-**Act without leaving the panel:** "Snooze 2d" and "Know it" on the up-next card call the same `/api/save` endpoint the web app uses (fetching and merging the current record first, same as `portal.js` does — the server replaces whole records, it doesn't merge). A "Quick add a task…" field at the bottom does the same for new tasks. Right-click anywhere on the pill or panel for Refresh now / Launch at login / Quit.
+## The island (always-on macOS presence)
 
-**Notifications:** best-effort local alerts (needs the `.app` bundle below — a loose binary can't reliably get notification authorization) for a deadline that's passed or due within a day, and once when you hit your daily minutes target. Each fires once per state, not once per 45-second poll.
+`mac/FieldnotesIsland` is a native Swift app — no Dock icon, no menu bar item, no window you can accidentally lose.
 
-It talks to the same local server as the web app, over `/api/next` (`server.py`) — a single JSON endpoint summarising the ranked queue, today's plan, streak and coverage, so the island doesn't need to reimplement the web UI. Nothing here reads your screen or any other app; it only polls your mouse position (no Accessibility permission needed) and calls local HTTP endpoints already used by the web UI.
+**Idle: a ring, top-right.** A small ring sits docked in the corner permanently. It fills as today's plan fills (minutes done / your daily target), colored green/amber/red by urgency (an assessment overdue or due today turns it red). Hover it for a native tooltip with the top task; click it to open that task; it's never in your way and never invisible — solid black disc + white mark, not a translucent material that can blend into the desktop behind it.
 
-Run it:
+**Hover the top-right edge (or the ring) to expand** into a solid black panel: "MOST IMPORTANT RIGHT NOW" leads, large and legible, with an animated progress ring next to your coverage/streak/open-task stats, then the six pages (Today, Modules, Week, Tasks, Journal, Settings) as one-click links into the web app. Move away and it shrinks back to the ring.
+
+**Act without leaving the panel:** "Snooze 2d" and "Know it" on the up-next card, and a "Quick add a task…" field, all call the same `/api/save` endpoint the web app uses — fetching and merging the current record first, since the server replaces whole records rather than merging them (same pattern `portal.js`'s own `save()` uses). Right-click the ring or panel for Refresh now / Launch at login / Quit.
+
+**Notifications:** best-effort local alerts for a deadline that's passed or due within a day, and once when you hit your daily minutes target — each fires once per state, not once per 45-second poll. Needs the `.app` bundle (below) to actually get authorized.
+
+It talks to the same server as the web app over one endpoint, `/api/next` — a JSON summary of the ranked queue, today's plan, streak and coverage. Nothing here reads your screen or any other app: it only polls your own mouse position (no Accessibility permission needed) and calls local HTTP endpoints the web UI already uses.
+
+### Run it
+
 ```bash
 cd mac/FieldnotesIsland
-swift run                      # debug build, quits when you close the terminal
-# or, for the real thing — an actual double-clickable app, notifications and
-# login-item support all need this instead of the loose binary above:
-./build.sh                      # builds FieldnotesIsland.app
+swift run                # debug build, quits when you close the terminal — fastest way to test a change
+# for the real thing — notifications and login-item support need this, not the loose binary above:
+./build.sh                # builds FieldnotesIsland.app
 open FieldnotesIsland.app
 ```
 
-Launch at login is built in now — right-click the pill or panel → "Launch at login" (uses `SMAppService`, macOS 13+; only works from the `.app` bundle). `com.fieldnotes.island.plist` is still here as a manual `launchctl` fallback if you'd rather not rely on that:
+**Auto-start at login** (so you don't have to re-launch it every time you're iterating on it):
 ```bash
-launchctl load ~/Library/LaunchAgents/com.fieldnotes.island.plist   # after copying it there and fixing the path
+mkdir -p ~/Library/LaunchAgents
+sed "s#/Users/YOUR_USERNAME/Downloads/Oxford_Brookes_CLI_correct/FieldNotes#$PWD/../..#" \
+  mac/FieldnotesIsland/com.fieldnotes.island.plist > ~/Library/LaunchAgents/com.fieldnotes.island.plist
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.fieldnotes.island.plist
 ```
+(run the `sed`/`launchctl` lines from the repo root). To pick up a change after rebuilding: `launchctl kickstart -k gui/$(id -u)/com.fieldnotes.island`. To stop it starting automatically: `launchctl bootout gui/$(id -u)/com.fieldnotes.island`. There's also a right-click → "Launch at login" toggle in the app itself (`SMAppService`) if you'd rather not touch `launchctl` directly — same effect, only works from the `.app` bundle.
 
-Point it at a different backend (e.g. a deployed Cloudflare Worker, once you're using one — see below) by setting `FIELDNOTES_URL` before launching, or in the plist's `EnvironmentVariables`:
+Point it at a different backend (e.g. a deployed Cloudflare Worker, once you're using one — see below) via `FIELDNOTES_URL`, either before launching or in the plist's `EnvironmentVariables`:
 ```bash
 FIELDNOTES_URL=https://your-worker.workers.dev swift run
 ```
