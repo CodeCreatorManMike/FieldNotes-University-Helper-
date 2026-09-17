@@ -1,0 +1,533 @@
+[
+  {
+    "id": "f952742a40078cd0",
+    "name": "Module Handbook.docx",
+    "path": "courses/01 COMP4004 - Problem Solving and Programming/Module Handbook.docx.txt",
+    "module": "COMP4004",
+    "historical": false,
+    "url": "sources/f952742a40078cd0.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "fda6474fad68a452",
+    "name": "overview.md",
+    "path": "courses/01 COMP4004 - Problem Solving and Programming/overview.md",
+    "module": "COMP4004",
+    "historical": false,
+    "url": "sources/fda6474fad68a452.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "3af2b007fae5e9b2",
+    "name": "overview.md",
+    "path": "courses/02 COMP4009 - Foundations of Computer Systems/overview.md",
+    "module": "COMP4009",
+    "historical": false,
+    "url": "sources/3af2b007fae5e9b2.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "54cc798abb53d7bb",
+    "name": "COMP4035 Module Guide.pdf",
+    "path": "courses/03 COMP4035 - Computer Science Applications/COMP4035 Module Guide.pdf.txt",
+    "module": "COMP4035",
+    "historical": false,
+    "url": "sources/54cc798abb53d7bb.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "3a5e592d90162244",
+    "name": "Lecture 1 - Introduction.pptx",
+    "path": "courses/03 COMP4035 - Computer Science Applications/Lecture 1 - Introduction.pptx.txt",
+    "module": "COMP4035",
+    "historical": false,
+    "url": "sources/3a5e592d90162244.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "087cce9a5fb627c7",
+    "name": "Lecture Slides - XAI.pdf",
+    "path": "courses/03 COMP4035 - Computer Science Applications/Lecture Slides - XAI.pdf.txt",
+    "module": "COMP4035",
+    "historical": false,
+    "url": "sources/087cce9a5fb627c7.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "5c7e59a6e70281c6",
+    "name": "Practical Week 1 2026.docx",
+    "path": "courses/03 COMP4035 - Computer Science Applications/Practical Week 1 2026.docx.txt",
+    "module": "COMP4035",
+    "historical": false,
+    "url": "sources/5c7e59a6e70281c6.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "a4704cd1f5ba84c8",
+    "name": "overview.md",
+    "path": "courses/03 COMP4035 - Computer Science Applications/overview.md",
+    "module": "COMP4035",
+    "historical": false,
+    "url": "sources/a4704cd1f5ba84c8.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "238d9c9dd2357473",
+    "name": "Formula Booklet.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Formula Booklet.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/238d9c9dd2357473.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "4569a9e2179ba13c",
+    "name": "Full Lecture Notes.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Full Lecture Notes.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/4569a9e2179ba13c.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "570b35ad6e639486",
+    "name": "Module Guide 2026-27.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Module Guide 2026-27.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/570b35ad6e639486.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "d171c73a97c5869d",
+    "name": "exam2324 solutions.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/exam2324 solutions.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/d171c73a97c5869d.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "8f5d73468d2f40c4",
+    "name": "exam2324.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/exam2324.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/8f5d73468d2f40c4.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "e808f6d01a16525a",
+    "name": "exam2425 solutions.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/exam2425 solutions.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/e808f6d01a16525a.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "cb4db3ccc11b8d4c",
+    "name": "exam2425.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/exam2425.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/cb4db3ccc11b8d4c.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "646cde9f3ad2a322",
+    "name": "exam2526 solutions.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/exam2526 solutions.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/646cde9f3ad2a322.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "a0d78865d8c2c4fd",
+    "name": "exam2526.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/exam2526.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/a0d78865d8c2c4fd.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "690ed3c46a41209d",
+    "name": "specimen paper solutions.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/specimen paper solutions.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/690ed3c46a41209d.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "6865f08756653f3e",
+    "name": "specimen paper.pdf",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/Past Exams/specimen paper.pdf.txt",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/6865f08756653f3e.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "cc95d19a495ff938",
+    "name": "overview.md",
+    "path": "courses/04 MATH4004 - Mathematics for Computing/overview.md",
+    "module": "MATH4004",
+    "historical": false,
+    "url": "sources/cc95d19a495ff938.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "7da3c8373086bde3",
+    "name": "Careers and Centre for Academic Development.pdf",
+    "path": "courses/05 Computing Induction Materials - ECM/Careers and Centre for Academic Development.pdf.txt",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/7da3c8373086bde3.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "6180e72bfc8adc58",
+    "name": "Computer Session Slides.pdf",
+    "path": "courses/05 Computing Induction Materials - ECM/Computer Session Slides.pdf.txt",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/6180e72bfc8adc58.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "a0257865fab54626",
+    "name": "Introductory Subject Talks - Year 3 Direct Entry.pdf",
+    "path": "courses/05 Computing Induction Materials - ECM/Introductory Subject Talks - Year 3 Direct Entry.pdf.txt",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/a0257865fab54626.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "31af1db7f9511afe",
+    "name": "Preparing for Placement.pdf",
+    "path": "courses/05 Computing Induction Materials - ECM/Preparing for Placement.pdf.txt",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/31af1db7f9511afe.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "944f1208a62c4239",
+    "name": "Subject Introduction Slides - Year 1.pdf",
+    "path": "courses/05 Computing Induction Materials - ECM/Subject Introduction Slides - Year 1.pdf.txt",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/944f1208a62c4239.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "1cf92d4dfdb90b03",
+    "name": "Welcome Talk Slides.pdf",
+    "path": "courses/05 Computing Induction Materials - ECM/Welcome Talk Slides.pdf.txt",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/1cf92d4dfdb90b03.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "c3a24abea7d37121",
+    "name": "overview.md",
+    "path": "courses/05 Computing Induction Materials - ECM/overview.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/c3a24abea7d37121.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "4471f10ed4ca7a85",
+    "name": "BSc Computing for Robotic Systems Handbook 2016-17.pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/BSc Computing for Robotic Systems Handbook 2016-17.pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/4471f10ed4ca7a85.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "30802bc42ad72b40",
+    "name": "Dell STEMAspire Programme - Expectations from a Mentee.pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Dell STEMAspire Programme - Expectations from a Mentee.pdf.txt",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/30802bc42ad72b40.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "d4d34e3de95e660d",
+    "name": "Computer Science combined honours (SD).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2016-17/Computer Science combined honours (SD).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/d4d34e3de95e660d.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "818674d41b08e934",
+    "name": "Computer Science single honours (SQ).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2016-17/Computer Science single honours (SQ).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/818674d41b08e934.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "70f355054e5b0060",
+    "name": "Information Technology Management for Business (IC).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2016-17/Information Technology Management for Business (IC).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/70f355054e5b0060.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "e1a9f76f333c149a",
+    "name": "Network Computing (NK).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2016-17/Network Computing (NK).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/e1a9f76f333c149a.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "56ce930835426ccc",
+    "name": "Computer Science combined honours (SD).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2017-18/Computer Science combined honours (SD).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/56ce930835426ccc.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "56b865686051bbbe",
+    "name": "Computer Science single honours (SQ).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2017-18/Computer Science single honours (SQ).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/56b865686051bbbe.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "a2981485147451c5",
+    "name": "Information Technology Management for Business (IC).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2017-18/Information Technology Management for Business (IC).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/a2981485147451c5.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "c79f8699984611ee",
+    "name": "Network Computing (NK).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Learning Outcomes 2017-18/Network Computing (NK).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/c79f8699984611ee.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "8b66b88c21e86f48",
+    "name": "Computer Science combined honours (SD).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Specifications 2016-17/Computer Science combined honours (SD).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/8b66b88c21e86f48.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "fca75aa13d79f8d2",
+    "name": "Computer Science single honours (SQ).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Specifications 2016-17/Computer Science single honours (SQ).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/fca75aa13d79f8d2.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "aa4f9be69fda9406",
+    "name": "Computing for Robotic Systems (RO).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Specifications 2016-17/Computing for Robotic Systems (RO).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/aa4f9be69fda9406.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "50669bdd180566de",
+    "name": "Information Technology Management for Business (IC).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Specifications 2016-17/Information Technology Management for Business (IC).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/50669bdd180566de.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "e8fadad0085e6833",
+    "name": "Network Computing (NK).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Specifications 2016-17/Network Computing (NK).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/e8fadad0085e6833.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "7796a1fcfe8abc6a",
+    "name": "Software Development for Business (WB).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Specifications 2016-17/Software Development for Business (WB).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/7796a1fcfe8abc6a.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "ae767aabe3a0eae2",
+    "name": "Computer Science combined honours (SD).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Structure Diagrams 2016-17/Computer Science combined honours (SD).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/ae767aabe3a0eae2.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "2a30af7408312d0d",
+    "name": "Computer Science single honours (SQ).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Structure Diagrams 2016-17/Computer Science single honours (SQ).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/2a30af7408312d0d.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "b123cdf39f9a2b21",
+    "name": "Computing for Robotic Systems (RO).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Structure Diagrams 2016-17/Computing for Robotic Systems (RO).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/b123cdf39f9a2b21.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "cf8c9575f7afbe5c",
+    "name": "Information Technology Management for Business (IC).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Structure Diagrams 2016-17/Information Technology Management for Business (IC).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/cf8c9575f7afbe5c.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "1e04e625fa5adc6a",
+    "name": "Network Computing (NK).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Structure Diagrams 2016-17/Network Computing (NK).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/1e04e625fa5adc6a.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "df115b0bc0153816",
+    "name": "Software Development for Business (WB).pdf",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/Programme Structure Diagrams 2016-17/Software Development for Business (WB).pdf.txt",
+    "module": "GENERAL",
+    "historical": true,
+    "url": "sources/df115b0bc0153816.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "07198fe58d62eee0",
+    "name": "overview.md",
+    "path": "courses/06 ECM Computing Events and Student Opportunities/overview.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/07198fe58d62eee0.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "4a1e0c20f3fd0726",
+    "name": "overview.md",
+    "path": "courses/07 Academic Integrity/overview.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/4a1e0c20f3fd0726.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "681f9a45861d4375",
+    "name": "overview.md",
+    "path": "courses/08 Computing - Academic Advising/overview.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/681f9a45861d4375.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "ffc1188b36b4617d",
+    "name": "overview.md",
+    "path": "courses/09 ECM Events/overview.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/ffc1188b36b4617d.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "b7d55d76fc02db44",
+    "name": "overview.md",
+    "path": "courses/10 Use of AI - Ethical decision making/overview.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/b7d55d76fc02db44.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "8cbb87bedadd3bba",
+    "name": "assessment_regulations.md",
+    "path": "general/assessment_regulations.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/8cbb87bedadd3bba.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "2a8eaad48fd08c4d",
+    "name": "practical_info.md",
+    "path": "general/practical_info.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/2a8eaad48fd08c4d.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "6903dcdbb08f2a5a",
+    "name": "programme_ai.md",
+    "path": "general/programme_ai.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/6903dcdbb08f2a5a.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "e285bd9dec642571",
+    "name": "semester_dates.md",
+    "path": "general/semester_dates.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/e285bd9dec642571.txt",
+    "captured": "2026-09-15"
+  },
+  {
+    "id": "deafb3e41d029322",
+    "name": "student_support_services.md",
+    "path": "general/student_support_services.md",
+    "module": "GENERAL",
+    "historical": false,
+    "url": "sources/deafb3e41d029322.txt",
+    "captured": "2026-09-15"
+  }
+]

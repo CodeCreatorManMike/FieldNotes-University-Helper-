@@ -1,0 +1,324 @@
+{
+  "checked": "2026-09-17",
+  "range": [
+    "2026-09-21",
+    "2027-05-14"
+  ],
+  "events": [
+    {
+      "id": "f5r3nhvq0qgjm3sshan8ap64us",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-09-21T11:00:00+01:00",
+      "end": "2026-09-21T13:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "2v529fmb0tj3r8q231rmk7rko4",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-09-22T13:00:00+01:00",
+      "end": "2026-09-22T15:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "lrfj8rjj6b5kj3oen0d3drqm00",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-09-28T11:00:00+01:00",
+      "end": "2026-09-28T13:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "6djsigbiq1os93949fvdb636bo",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-09-29T13:00:00+01:00",
+      "end": "2026-09-29T15:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "kuuqt1d8jfmqm4uki2as2t6g44",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-10-05T11:00:00+01:00",
+      "end": "2026-10-05T13:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "d39gcsv0d84gvn17gqq4v06fko",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-10-06T13:00:00+01:00",
+      "end": "2026-10-06T15:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "3113t8el9nst31eo1pkp3t49i0",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-10-12T11:00:00+01:00",
+      "end": "2026-10-12T13:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "s526g5frerlc6u0omfa81ptcko",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-10-13T13:00:00+01:00",
+      "end": "2026-10-13T15:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "3guunshoutkamgl4noa3na4m08",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-10-19T11:00:00+01:00",
+      "end": "2026-10-19T13:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "p8cgem3h3n2oofjgth7g1vn6f8",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-10-20T13:00:00+01:00",
+      "end": "2026-10-20T15:00:00+01:00",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "ltm029g8j8coqga4c3rm97pdpc",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-10-26T11:00:00Z",
+      "end": "2026-10-26T13:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "phif7vu6nh8pu6kdlqu469fkrg",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-10-27T13:00:00Z",
+      "end": "2026-10-27T15:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "tq13eosc50jqnl8nqv66mepeuc",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-11-02T11:00:00Z",
+      "end": "2026-11-02T13:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "d01kcaaj455rb07rg8bsfu5j14",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-11-03T13:00:00Z",
+      "end": "2026-11-03T15:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "j8kl7f7pasoq4roe3nv5ka9uik",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-11-09T11:00:00Z",
+      "end": "2026-11-09T13:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "o9b8t7hgb6nuufkvtidl5309l8",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-11-10T13:00:00Z",
+      "end": "2026-11-10T15:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "n3mnhqug238cfnt2n96hre1aj8",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-11-16T11:00:00Z",
+      "end": "2026-11-16T13:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "0sh3bgd96c4squm7o18o6hp7i8",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-11-17T13:00:00Z",
+      "end": "2026-11-17T15:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "ourbr7ijk431a67qjdh8a4t6c0",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-11-23T11:00:00Z",
+      "end": "2026-11-23T13:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "jg0pham58u7rl46a9p3fljmess",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-11-24T13:00:00Z",
+      "end": "2026-11-24T15:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "g9gd7h2co50l3va03742p939ho",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-11-30T11:00:00Z",
+      "end": "2026-11-30T13:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "auhl1j28sl4gj1nnk9jptt9lf0",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-12-01T13:00:00Z",
+      "end": "2026-12-01T15:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "c7h04nu321ljkb6dl6h6q7bul0",
+      "module": "COMP4004",
+      "title": "Lecture",
+      "start": "2026-12-07T11:00:00Z",
+      "end": "2026-12-07T13:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.1.MLT (Main) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "g87c91dle01h81geiinjjvefjc",
+      "module": "COMP4009",
+      "title": "Lecture",
+      "start": "2026-12-08T13:00:00Z",
+      "end": "2026-12-08T15:00:00Z",
+      "location": "Campus: Headington Building: John Henry Brookes Room: JHB.B.08 (Basement) OX3 0BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "ers3r9q13tv5h0r6j5812vqdcs",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-01-29T12:00:00Z",
+      "end": "2027-01-29T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "to4ph8ffv0solergvdeae9t28k",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-02-05T12:00:00Z",
+      "end": "2027-02-05T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "q41kp3992qbhpgthjseia3aum8",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-02-12T12:00:00Z",
+      "end": "2027-02-12T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "25jg0b7vk0l9dcpaiugac4cdkc",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-02-19T12:00:00Z",
+      "end": "2027-02-19T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "t116hjtlbdk1u2ai5fv3lsmrl8",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-02-26T12:00:00Z",
+      "end": "2027-02-26T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "48o3frpao83u6dkdqs362atvf8",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-03-05T12:00:00Z",
+      "end": "2027-03-05T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "sloucdl161pm2buuo41q6ktu6s",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-03-12T12:00:00Z",
+      "end": "2027-03-12T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "vamnqa1co071i1p686tvh68tp0",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-03-19T12:00:00Z",
+      "end": "2027-03-19T13:00:00Z",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "n8gr42gr6svkl3b7km64gpb4tk",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-04-09T12:00:00+01:00",
+      "end": "2027-04-09T13:00:00+01:00",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "j8mcbp1e4cnkkna05am5378sqc",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-04-16T12:00:00+01:00",
+      "end": "2027-04-16T13:00:00+01:00",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    },
+    {
+      "id": "qg3l7t5l7gbb3o2gvq5v0occjs",
+      "module": "COMP4005",
+      "title": "Lecture",
+      "start": "2027-04-23T12:00:00+01:00",
+      "end": "2027-04-23T13:00:00+01:00",
+      "location": "Campus: Headington Building: Clerici Room: CLC.G.02 (SKW Tiered) OX3 1BP",
+      "source": "Brookes Google Calendar snapshot"
+    }
+  ]
+}

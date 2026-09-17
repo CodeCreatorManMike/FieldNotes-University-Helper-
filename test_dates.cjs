@@ -1,0 +1,18 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const context={console,Intl,Date,Set,Map,URL,Promise,window:{},location:{hash:'#modules'},document:{addEventListener(){},querySelector(){return null}},addEventListener(){},fetch:()=>new Promise(()=>{})};
+vm.createContext(context);
+vm.runInContext(fs.readFileSync('dist/plan.js','utf8'),context);
+context.PLAN=context.window.PLAN;
+vm.runInContext(fs.readFileSync('dist/portal.js','utf8'),context);
+const run=s=>vm.runInContext(s,context);
+assert.equal(run('weekDate(1,11)'),'2026-11-30');
+assert.equal(run('weekDate(2,8)'),'2027-03-15');
+assert.equal(run('weekDate(2,9)'),'2027-04-05');
+assert.equal(run('weekDate(2,12)'),'2027-04-26');
+assert.equal(run('teaching("2027-03-25")'),null);
+assert.equal(run('teaching("2027-04-09").week'),9);
+assert.equal(run('assessWindow(PLAN.assessments.find(a=>a.id==="p-test"))[0]'),'2026-12-10');
+assert.equal(run('assessWindow(PLAN.assessments.find(a=>a.id==="p-portfolio"))[0]'),'2026-12-04');
+assert.equal(run('new Set(PLAN.topics.map(t=>t.id)).size'),run('PLAN.topics.length'));
+assert.ok(run('PLAN.topics.every(t=>PLAN.modules.some(m=>m.code===t.module))'));
+console.log('Date mapping, Easter break, module links and unique topic IDs passed.');
