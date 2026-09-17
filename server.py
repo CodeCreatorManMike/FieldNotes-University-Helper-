@@ -52,6 +52,11 @@ def validate_record(kind, data):
         if data.get('time') and (not isinstance(data['time'], str) or not re.fullmatch(r'(?:[01]\d|2[0-3]):[0-5]\d', data['time'])): raise ValueError('Invalid deadline time.')
         if 'submitted' in data and type(data['submitted']) is not bool: raise ValueError('Invalid submitted flag.')
         if 'url' in data and not isinstance(data['url'], str): raise ValueError('Invalid assessment link.')
+        if 'priority' in data and (type(data['priority']) is not int or not 0 <= data['priority'] <= 3): raise ValueError('Invalid priority.')
+        if 'known' in data and type(data['known']) is not bool: raise ValueError('Invalid known flag.')
+        if data.get('snoozed'):
+            try: datetime.strptime(data['snoozed'], '%Y-%m-%d')
+            except ValueError: raise ValueError('Invalid snooze date.')
     elif kind == 'entry':
         if data.get('type') not in ('study', 'error', 'question', 'reflection', 'task'): raise ValueError('Unknown log type.')
         if not isinstance(data.get('text'), str) or not data['text'].strip(): raise ValueError('Write a note before saving.')
@@ -75,7 +80,8 @@ def validate_record(kind, data):
                 if not data['date'] <= data['until'] <= '2027-08-31': raise ValueError('Repeat-until must be after the first date and within this academic year.')
     elif kind == 'settings':
         if 'dailyMinutes' in data and (type(data['dailyMinutes']) is not int or not 15 <= data['dailyMinutes'] <= 480): raise ValueError('Daily target must be 15–480 minutes.')
-        if 'diagnostic' in data and (not isinstance(data['diagnostic'], dict) or not all(type(v) is int and 0 <= v <= 2 for v in data['diagnostic'].values())): raise ValueError('Invalid diagnostic scores.')
+        if 'diagnostic' in data and (not isinstance(data['diagnostic'], dict) or not all(type(v) is int and 0 <= v <= 3 for v in data['diagnostic'].values())): raise ValueError('Invalid diagnostic scores.')
+        if 'priorities' in data and (not isinstance(data['priorities'], dict) or not all(type(v) is int and 0 <= v <= 3 for v in data['priorities'].values())): raise ValueError('Invalid module priorities.')
         if 'timetableUrl' in data and not isinstance(data['timetableUrl'],str): raise ValueError('Invalid timetable link.')
     else: raise ValueError('Unknown record type.')
     if len(json.dumps(data)) > 250000: raise ValueError('This record is too large.')
