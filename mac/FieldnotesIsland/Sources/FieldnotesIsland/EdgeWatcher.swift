@@ -29,7 +29,7 @@ final class EdgeWatcher {
         let loc = NSEvent.mouseLocation
         let frame = screen.frame
         // Trigger zone: a thin strip down the left edge, upper half of the screen.
-        let inTriggerZone = (loc.x - frame.minX) < 10 && loc.y > frame.minY + frame.height * 0.45
+        let inTriggerZone = (frame.maxX - loc.x) < 10 && loc.y > frame.minY + frame.height * 0.45
         let inPanel = panelFrameProvider?().map { NSMouseInRect(loc, $0.insetBy(dx: -6, dy: -6), false) } ?? false
         let inPill = pillFrameProvider?().map { NSMouseInRect(loc, $0.insetBy(dx: -6, dy: -6), false) } ?? false
 

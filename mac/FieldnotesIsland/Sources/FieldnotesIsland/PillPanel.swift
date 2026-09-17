@@ -26,6 +26,6 @@ final class PillPanel: NSPanel {
         guard let screen = NSScreen.main else { return }
         let size = contentView?.fittingSize ?? NSSize(width: 62, height: 62)
         let frame = screen.visibleFrame
-        setFrame(NSRect(x: frame.minX + 4, y: frame.maxY - size.height - 4, width: size.width, height: size.height), display: true)
+        setFrame(NSRect(x: frame.maxX - size.width - 4, y: frame.maxY - size.height - 4, width: size.width, height: size.height), display: true)
     }
 }

@@ -58,7 +58,7 @@ final class IslandPanel: NSPanel {
         guard let screen = NSScreen.main else { return }
         let size = contentView?.fittingSize ?? NSSize(width: 300, height: 460)
         let frame = screen.visibleFrame
-        let origin = NSPoint(x: frame.minX + 10, y: frame.maxY - size.height - 10)
+        let origin = NSPoint(x: frame.maxX - size.width - 10, y: frame.maxY - size.height - 10)
         setFrame(NSRect(origin: origin, size: size), display: true)
     }
 
