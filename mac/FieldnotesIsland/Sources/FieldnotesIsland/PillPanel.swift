@@ -1,9 +1,11 @@
 import AppKit
 import SwiftUI
 
-/// The small always-visible anchor panel (see PillView). Docked at the
-/// top-left corner; hidden only while the full IslandPanel is showing so
-/// they don't overlap.
+/// The always-visible anchor panel (see PillView). Docked at the top-left
+/// corner; hidden only while the full IslandPanel is showing so they don't
+/// overlap. Solid opaque white — deliberately NOT a vibrancy/blur material,
+/// which blends with whatever's behind it and can end up nearly invisible
+/// over a light desktop background. This has to be seen at a glance, always.
 final class PillPanel: NSPanel {
     init(state: AppState) {
         let hosting = NSHostingView(rootView: PillView().environmentObject(state))
@@ -18,24 +20,24 @@ final class PillPanel: NSPanel {
         hasShadow = true
         hidesOnDeactivate = false
 
-        let blur = NSVisualEffectView()
-        blur.material = .hudWindow
-        blur.blendingMode = .behindWindow
-        blur.state = .active
-        blur.wantsLayer = true
-        blur.layer?.cornerRadius = 11
-        blur.layer?.cornerCurve = .continuous
-        blur.layer?.masksToBounds = true
-        blur.translatesAutoresizingMaskIntoConstraints = false
+        let card = NSView()
+        card.wantsLayer = true
+        card.layer?.backgroundColor = NSColor.white.cgColor
+        card.layer?.cornerRadius = 13
+        card.layer?.cornerCurve = .continuous
+        card.layer?.masksToBounds = true
+        card.layer?.borderWidth = 1
+        card.layer?.borderColor = NSColor.black.withAlphaComponent(0.1).cgColor
+        card.translatesAutoresizingMaskIntoConstraints = false
 
         let container = NSView()
-        container.addSubview(blur)
+        container.addSubview(card)
         container.addSubview(hosting)
         NSLayoutConstraint.activate([
-            blur.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            blur.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            blur.topAnchor.constraint(equalTo: container.topAnchor),
-            blur.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            card.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            card.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            card.topAnchor.constraint(equalTo: container.topAnchor),
+            card.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             hosting.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             hosting.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             hosting.topAnchor.constraint(equalTo: container.topAnchor),
@@ -46,8 +48,8 @@ final class PillPanel: NSPanel {
 
     func reposition() {
         guard let screen = NSScreen.main else { return }
-        let size = contentView?.fittingSize ?? NSSize(width: 50, height: 26)
+        let size = contentView?.fittingSize ?? NSSize(width: 220, height: 44)
         let frame = screen.visibleFrame
-        setFrame(NSRect(x: frame.minX + 6, y: frame.maxY - size.height - 6, width: size.width, height: size.height), display: true)
+        setFrame(NSRect(x: frame.minX + 8, y: frame.maxY - size.height - 8, width: size.width, height: size.height), display: true)
     }
 }
