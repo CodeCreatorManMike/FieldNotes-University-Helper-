@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 .DS_Store
 .sites-runtime/
+node_modules/
+.wrangler/
+.dev.vars

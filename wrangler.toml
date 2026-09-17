@@ -1,0 +1,12 @@
+name = "fieldnotes"
+main = "worker/index.js"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "fieldnotes"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
