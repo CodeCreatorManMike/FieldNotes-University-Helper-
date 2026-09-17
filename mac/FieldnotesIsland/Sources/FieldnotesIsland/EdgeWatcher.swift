@@ -10,6 +10,7 @@ final class EdgeWatcher {
     private let hideAfterTicks = 14 // ~1.1s of being away before hiding, avoids flicker
 
     var panelFrameProvider: (() -> CGRect?)?
+    var pillFrameProvider: (() -> CGRect?)?
     var onShow: (() -> Void)?
     var onHide: (() -> Void)?
 
@@ -30,8 +31,9 @@ final class EdgeWatcher {
         // Trigger zone: a thin strip down the left edge, upper half of the screen.
         let inTriggerZone = (loc.x - frame.minX) < 10 && loc.y > frame.minY + frame.height * 0.45
         let inPanel = panelFrameProvider?().map { NSMouseInRect(loc, $0.insetBy(dx: -6, dy: -6), false) } ?? false
+        let inPill = pillFrameProvider?().map { NSMouseInRect(loc, $0.insetBy(dx: -6, dy: -6), false) } ?? false
 
-        if inTriggerZone || inPanel {
+        if inTriggerZone || inPanel || inPill {
             outsideTicks = 0
             if !isShown {
                 isShown = true

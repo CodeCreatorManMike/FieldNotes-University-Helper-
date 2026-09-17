@@ -19,6 +19,8 @@ struct IslandView: View {
     @EnvironmentObject var state: AppState
     @State private var hoveredNav: String?
     @State private var upNextHovered = false
+    @State private var quickTask = ""
+    @FocusState private var quickTaskFocused: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -28,10 +30,17 @@ struct IslandView: View {
             Divider().overlay(Color.white.opacity(0.12))
             upNext
             progressStrip
+            quickAdd
         }
         .padding(14)
         .frame(width: 236)
         .background(Color.clear)
+        .contextMenu {
+            Button("Refresh now") { Commands.refresh() }
+            Button(LaunchAtLogin.isEnabled ? "Disable launch at login" : "Launch at login") { Commands.toggleLogin() }
+            Divider()
+            Button("Quit Fieldnotes Island") { Commands.quit() }
+        }
     }
 
     private var brand: some View {
@@ -91,6 +100,11 @@ struct IslandView: View {
                 }
                 .buttonStyle(.plain)
                 .onHover { upNextHovered = $0 }
+                HStack(spacing: 8) {
+                    actionButton("Snooze 2d", "moon.zzz.fill") { state.snoozeTop() }
+                    actionButton("Know it", "checkmark.circle.fill") { state.markTopKnown() }
+                    if state.isBusy { ProgressView().controlSize(.mini).tint(.white) }
+                }
             } else if state.isReachable {
                 Text("Nothing queued — nice work.").font(.system(size: 11)).foregroundStyle(.white.opacity(0.6))
             } else {
@@ -126,6 +140,38 @@ struct IslandView: View {
                 }
             }
         }
+    }
+
+    private func actionButton(_ label: String, _ icon: String, _ action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 4) {
+                Image(systemName: icon).font(.system(size: 9))
+                Text(label).font(.system(size: 10, weight: .medium))
+            }
+            .padding(.horizontal, 8).padding(.vertical, 5)
+            .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(Color.white.opacity(0.08)))
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(.white.opacity(0.75))
+        .disabled(state.isBusy)
+    }
+
+    @ViewBuilder
+    private var quickAdd: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "plus.circle.fill").font(.system(size: 12)).foregroundStyle(.white.opacity(0.4))
+            TextField("Quick add a task…", text: $quickTask)
+                .textFieldStyle(.plain)
+                .font(.system(size: 11.5))
+                .foregroundStyle(.white)
+                .focused($quickTaskFocused)
+                .onSubmit {
+                    state.addTask(quickTask)
+                    quickTask = ""
+                }
+        }
+        .padding(.horizontal, 9).padding(.vertical, 7)
+        .background(RoundedRectangle(cornerRadius: 8, style: .continuous).fill(Color.white.opacity(0.06)))
     }
 
     private func stat(_ value: String, _ label: String) -> some View {

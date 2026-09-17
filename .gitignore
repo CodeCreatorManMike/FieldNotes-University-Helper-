@@ -8,3 +8,4 @@ node_modules/
 .dev.vars
 mac/FieldnotesIsland/.build/
 mac/FieldnotesIsland/.swiftpm/
+mac/FieldnotesIsland/FieldnotesIsland.app/
