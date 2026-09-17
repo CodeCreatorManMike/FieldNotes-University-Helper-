@@ -117,10 +117,17 @@ struct IslandView: View {
     private var progressStrip: some View {
         if let n = state.next {
             VStack(alignment: .leading, spacing: 10) {
-                HStack(spacing: 18) {
-                    stat("\(n.coverage.done)/\(n.coverage.total)", "covered")
-                    stat("\(n.streak)", "day streak")
-                    stat("\(n.openTasks)", "open")
+                HStack(alignment: .top, spacing: 14) {
+                    HStack(spacing: 18) {
+                        stat("\(n.coverage.done)/\(n.coverage.total)", "covered")
+                        stat("\(n.streak)", "day streak")
+                        stat("\(n.openTasks)", "open")
+                    }
+                    Spacer(minLength: 0)
+                    RingProgressView(
+                        progress: n.dailyTarget > 0 ? Double(n.planUsedMinutes) / Double(n.dailyTarget) : 0,
+                        color: Color(red: 0.71, green: 0.95, blue: 0.49)
+                    )
                 }
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
