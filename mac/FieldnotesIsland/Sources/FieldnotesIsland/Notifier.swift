@@ -45,6 +45,10 @@ final class Notifier {
         send(title: "Daily target hit", body: "\(payload.planUsedMinutes) of \(payload.dailyTarget) minutes planned — nice work.")
     }
 
+    func sendFocusComplete() {
+        send(title: "Focus session complete", body: "25 minutes done. Take a short break before the next one.")
+    }
+
     private func send(title: String, body: String) {
         let content = UNMutableNotificationContent()
         content.title = title
