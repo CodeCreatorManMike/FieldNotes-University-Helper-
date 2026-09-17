@@ -1,52 +1,49 @@
 import SwiftUI
 
-/// The always-visible glanceable anchor: solid white, black symbol and
-/// text, docked at the screen edge, showing the single most important
-/// thing to do right now so it never needs a hover to be useful. The full
-/// panel still grows out from here on hover for everything else.
+/// The always-visible idle indicator: a ring that fills as today's plan
+/// fills (planUsedMinutes / dailyTarget), colored by urgency, with a black
+/// disc and white "f." mark at its center for contrast against anything
+/// behind it. Hover shows a native tooltip with the top task; hovering the
+/// edge/pill expands the full panel (handled by EdgeWatcher, not here).
 struct PillView: View {
     @EnvironmentObject var state: AppState
 
+    private var progress: Double {
+        guard let n = state.next, n.dailyTarget > 0 else { return 0 }
+        return min(1, max(0, Double(n.planUsedMinutes) / Double(n.dailyTarget)))
+    }
+
     var body: some View {
         let c = state.urgency.color
-        HStack(spacing: 9) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 7, style: .continuous)
-                    .fill(Color.black)
-                    .frame(width: 24, height: 24)
-                Text("f.").font(.system(size: 13, weight: .bold, design: .serif)).italic().foregroundStyle(.white)
-            }
-            VStack(alignment: .leading, spacing: 1) {
-                if let top = state.next?.top {
-                    Text(top.title)
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundStyle(.black)
-                        .lineLimit(1)
-                    Text(top.module)
-                        .font(.system(size: 9.5, weight: .medium))
-                        .foregroundStyle(.black.opacity(0.5))
-                } else if state.isReachable {
-                    Text("All clear").font(.system(size: 12, weight: .semibold)).foregroundStyle(.black)
-                    Text("nothing queued").font(.system(size: 9.5)).foregroundStyle(.black.opacity(0.5))
-                } else {
-                    Text("Fieldnotes").font(.system(size: 12, weight: .semibold)).foregroundStyle(.black)
-                    Text("server unreachable").font(.system(size: 9.5)).foregroundStyle(.red.opacity(0.75))
-                }
-            }
-            Spacer(minLength: 0)
+        ZStack {
             Circle()
-                .fill(Color(red: c.0, green: c.1, blue: c.2))
-                .frame(width: 8, height: 8)
+                .stroke(Color.black.opacity(0.18), lineWidth: 5)
+            Circle()
+                .trim(from: 0, to: max(progress, 0.02))
+                .stroke(Color(red: c.0, green: c.1, blue: c.2), style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+            Circle()
+                .fill(Color.black)
+                .frame(width: 38, height: 38)
+            Text("f.")
+                .font(.system(size: 16, weight: .bold, design: .serif))
+                .italic()
+                .foregroundStyle(.white)
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 8)
-        .frame(minWidth: 210, maxWidth: 260)
-        .contentShape(Rectangle())
+        .frame(width: 54, height: 54)
+        .padding(4)
+        .contentShape(Circle())
+        .help(tooltip)
         .onTapGesture {
             if let id = state.next?.top?.id { FieldnotesAPI.openRoute("topic/\(id)") }
             else { FieldnotesAPI.openRoute("home") }
         }
         .contextMenu { menuItems }
+    }
+
+    private var tooltip: String {
+        guard let top = state.next?.top else { return state.isReachable ? "Fieldnotes — nothing queued" : "Fieldnotes — server unreachable" }
+        return "\(top.title) · \(top.module)\n\(top.reason.first ?? "")"
     }
 
     @ViewBuilder private var menuItems: some View {

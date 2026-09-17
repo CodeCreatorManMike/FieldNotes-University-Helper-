@@ -23,17 +23,17 @@ struct IslandView: View {
     @FocusState private var quickTaskFocused: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            brand
-            Divider().overlay(Color.white.opacity(0.12))
-            VStack(spacing: 2) { ForEach(navItems) { navRow($0) } }
-            Divider().overlay(Color.white.opacity(0.12))
+        VStack(alignment: .leading, spacing: 16) {
             upNext
             progressStrip
             quickAdd
+            Divider().overlay(Color.white.opacity(0.14))
+            VStack(spacing: 3) { ForEach(navItems) { navRow($0) } }
+            Divider().overlay(Color.white.opacity(0.14))
+            brand
         }
-        .padding(14)
-        .frame(width: 236)
+        .padding(18)
+        .frame(width: 300)
         .background(Color.clear)
         .contextMenu {
             Button("Refresh now") { Commands.refresh() }
@@ -47,11 +47,11 @@ struct IslandView: View {
         HStack(spacing: 8) {
             ZStack {
                 RoundedRectangle(cornerRadius: 7, style: .continuous)
-                    .fill(Color(red: 0.08, green: 0.19, blue: 0.26))
+                    .fill(Color.white)
                     .frame(width: 22, height: 22)
-                Text("f.").font(.system(size: 12, weight: .bold, design: .serif)).italic().foregroundStyle(Color(red: 0.71, green: 0.95, blue: 0.49))
+                Text("f.").font(.system(size: 12, weight: .bold, design: .serif)).italic().foregroundStyle(.black)
             }
-            Text("fieldnotes").font(.system(size: 13, weight: .semibold))
+            Text("fieldnotes").font(.system(size: 13, weight: .semibold)).foregroundStyle(.white.opacity(0.8))
             Spacer()
             Circle().fill(state.isReachable ? Color.green : Color.red).frame(width: 6, height: 6)
         }
@@ -61,42 +61,42 @@ struct IslandView: View {
         Button {
             FieldnotesAPI.openRoute(item.id)
         } label: {
-            HStack(spacing: 10) {
-                Image(systemName: item.icon).font(.system(size: 12)).frame(width: 16)
-                Text(item.label).font(.system(size: 12.5, weight: .medium))
+            HStack(spacing: 12) {
+                Image(systemName: item.icon).font(.system(size: 14)).frame(width: 18)
+                Text(item.label).font(.system(size: 14.5, weight: .medium))
                 Spacer()
             }
-            .padding(.vertical, 7)
-            .padding(.horizontal, 8)
+            .padding(.vertical, 9)
+            .padding(.horizontal, 10)
             .background(
-                RoundedRectangle(cornerRadius: 7, style: .continuous)
-                    .fill(hoveredNav == item.id ? Color.white.opacity(0.1) : Color.clear)
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(hoveredNav == item.id ? Color.white.opacity(0.12) : Color.clear)
             )
         }
         .buttonStyle(.plain)
-        .foregroundStyle(.white.opacity(0.92))
+        .foregroundStyle(.white.opacity(0.95))
         .onHover { hovering in hoveredNav = hovering ? item.id : (hoveredNav == item.id ? nil : hoveredNav) }
     }
 
     @ViewBuilder
     private var upNext: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text("UP NEXT").font(.system(size: 9.5, weight: .bold)).tracking(0.8).foregroundStyle(.white.opacity(0.45))
+        VStack(alignment: .leading, spacing: 8) {
+            Text("MOST IMPORTANT RIGHT NOW").font(.system(size: 10, weight: .bold)).tracking(0.8).foregroundStyle(.white.opacity(0.5))
             if let top = state.next?.top {
                 Button { FieldnotesAPI.openRoute("topic/\(top.id)") } label: {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(top.module).font(.system(size: 10, weight: .semibold)).foregroundStyle(Color(red: 0.71, green: 0.95, blue: 0.49))
-                        Text(top.title).font(.system(size: 13, weight: .semibold)).foregroundStyle(.white).lineLimit(2)
-                        Text(top.reason.first ?? "Ready to start").font(.system(size: 10.5)).foregroundStyle(.white.opacity(0.6)).lineLimit(upNextHovered ? 4 : 1)
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(top.module).font(.system(size: 11.5, weight: .semibold)).foregroundStyle(Color(red: 0.71, green: 0.95, blue: 0.49))
+                        Text(top.title).font(.system(size: 18, weight: .bold)).foregroundStyle(.white).lineLimit(2)
+                        Text(top.reason.first ?? "Ready to start").font(.system(size: 12)).foregroundStyle(.white.opacity(0.65)).lineLimit(upNextHovered ? 4 : 1)
                         if upNextHovered, top.reason.count > 1 {
                             ForEach(top.reason.dropFirst(), id: \.self) { r in
-                                Text("· " + r).font(.system(size: 10.5)).foregroundStyle(.white.opacity(0.5))
+                                Text("· " + r).font(.system(size: 12)).foregroundStyle(.white.opacity(0.55))
                             }
                         }
                     }
-                    .padding(10)
+                    .padding(14)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(RoundedRectangle(cornerRadius: 9, style: .continuous).fill(Color.white.opacity(0.06)))
+                    .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(Color.white.opacity(0.08)))
                 }
                 .buttonStyle(.plain)
                 .onHover { upNextHovered = $0 }
@@ -106,9 +106,9 @@ struct IslandView: View {
                     if state.isBusy { ProgressView().controlSize(.mini).tint(.white) }
                 }
             } else if state.isReachable {
-                Text("Nothing queued — nice work.").font(.system(size: 11)).foregroundStyle(.white.opacity(0.6))
+                Text("Nothing queued — nice work.").font(.system(size: 13)).foregroundStyle(.white.opacity(0.65))
             } else {
-                Text("Can't reach the local server.").font(.system(size: 11)).foregroundStyle(.orange.opacity(0.85))
+                Text("Can't reach the local server.").font(.system(size: 13)).foregroundStyle(.orange.opacity(0.85))
             }
         }
     }
@@ -116,27 +116,27 @@ struct IslandView: View {
     @ViewBuilder
     private var progressStrip: some View {
         if let n = state.next {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(spacing: 14) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 18) {
                     stat("\(n.coverage.done)/\(n.coverage.total)", "covered")
                     stat("\(n.streak)", "day streak")
                     stat("\(n.openTasks)", "open")
                 }
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 5) {
                     HStack {
-                        Text("Today's plan").font(.system(size: 9.5, weight: .semibold)).foregroundStyle(.white.opacity(0.5))
+                        Text("Today's plan").font(.system(size: 11, weight: .semibold)).foregroundStyle(.white.opacity(0.55))
                         Spacer()
-                        Text("\(n.planUsedMinutes)/\(n.dailyTarget) min").font(.system(size: 9.5)).foregroundStyle(.white.opacity(0.5))
+                        Text("\(n.planUsedMinutes)/\(n.dailyTarget) min").font(.system(size: 11)).foregroundStyle(.white.opacity(0.55))
                     }
                     GeometryReader { geo in
                         ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 3).fill(Color.white.opacity(0.12)).frame(height: 5)
+                            RoundedRectangle(cornerRadius: 3).fill(Color.white.opacity(0.14)).frame(height: 6)
                             RoundedRectangle(cornerRadius: 3)
                                 .fill(Color(red: 0.71, green: 0.95, blue: 0.49))
-                                .frame(width: geo.size.width * min(1, n.dailyTarget > 0 ? Double(n.planUsedMinutes) / Double(n.dailyTarget) : 0), height: 5)
+                                .frame(width: geo.size.width * min(1, n.dailyTarget > 0 ? Double(n.planUsedMinutes) / Double(n.dailyTarget) : 0), height: 6)
                         }
                     }
-                    .frame(height: 5)
+                    .frame(height: 6)
                 }
             }
         }
@@ -175,9 +175,9 @@ struct IslandView: View {
     }
 
     private func stat(_ value: String, _ label: String) -> some View {
-        VStack(alignment: .leading, spacing: 1) {
-            Text(value).font(.system(size: 13, weight: .bold)).foregroundStyle(.white)
-            Text(label).font(.system(size: 8.5)).foregroundStyle(.white.opacity(0.45))
+        VStack(alignment: .leading, spacing: 2) {
+            Text(value).font(.system(size: 16, weight: .bold)).foregroundStyle(.white)
+            Text(label).font(.system(size: 10)).foregroundStyle(.white.opacity(0.5))
         }
     }
 }

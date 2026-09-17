@@ -1,11 +1,11 @@
 import AppKit
 import SwiftUI
 
-/// The always-visible anchor panel (see PillView). Docked at the top-left
-/// corner; hidden only while the full IslandPanel is showing so they don't
-/// overlap. Solid opaque white — deliberately NOT a vibrancy/blur material,
-/// which blends with whatever's behind it and can end up nearly invisible
-/// over a light desktop background. This has to be seen at a glance, always.
+/// The always-visible idle anchor (see PillView) — a small ring, not a
+/// card, so the panel itself stays fully transparent; the ring's own black
+/// disc + stroke give it contrast against any backdrop without needing an
+/// opaque background window. Docked at the top-left corner; hidden only
+/// while the full IslandPanel is showing so they don't overlap.
 final class PillPanel: NSPanel {
     init(state: AppState) {
         let hosting = NSHostingView(rootView: PillView().environmentObject(state))
@@ -19,37 +19,13 @@ final class PillPanel: NSPanel {
         backgroundColor = .clear
         hasShadow = true
         hidesOnDeactivate = false
-
-        let card = NSView()
-        card.wantsLayer = true
-        card.layer?.backgroundColor = NSColor.white.cgColor
-        card.layer?.cornerRadius = 13
-        card.layer?.cornerCurve = .continuous
-        card.layer?.masksToBounds = true
-        card.layer?.borderWidth = 1
-        card.layer?.borderColor = NSColor.black.withAlphaComponent(0.1).cgColor
-        card.translatesAutoresizingMaskIntoConstraints = false
-
-        let container = NSView()
-        container.addSubview(card)
-        container.addSubview(hosting)
-        NSLayoutConstraint.activate([
-            card.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            card.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            card.topAnchor.constraint(equalTo: container.topAnchor),
-            card.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            hosting.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            hosting.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            hosting.topAnchor.constraint(equalTo: container.topAnchor),
-            hosting.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-        ])
-        self.contentView = container
+        self.contentView = hosting
     }
 
     func reposition() {
         guard let screen = NSScreen.main else { return }
-        let size = contentView?.fittingSize ?? NSSize(width: 220, height: 44)
+        let size = contentView?.fittingSize ?? NSSize(width: 62, height: 62)
         let frame = screen.visibleFrame
-        setFrame(NSRect(x: frame.minX + 8, y: frame.maxY - size.height - 8, width: size.width, height: size.height), display: true)
+        setFrame(NSRect(x: frame.minX + 4, y: frame.maxY - size.height - 4, width: size.width, height: size.height), display: true)
     }
 }
