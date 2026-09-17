@@ -6,8 +6,8 @@
 	<string>com.fieldnotes.island</string>
 	<key>ProgramArguments</key>
 	<array>
-		<!-- Replace with the absolute path printed by build.sh -->
-		<string>/Users/YOUR_USERNAME/Downloads/Oxford_Brookes_CLI_correct/FieldNotes/mac/FieldnotesIsland/.build/release/FieldnotesIsland</string>
+		<!-- Replace with the absolute path printed by build.sh (FieldnotesIsland.app/Contents/MacOS/FieldnotesIsland) -->
+		<string>/Users/YOUR_USERNAME/Downloads/Oxford_Brookes_CLI_correct/FieldNotes/mac/FieldnotesIsland/FieldnotesIsland.app/Contents/MacOS/FieldnotesIsland</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
