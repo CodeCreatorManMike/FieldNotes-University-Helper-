@@ -45,12 +45,7 @@ struct IslandView: View {
 
     private var brand: some View {
         HStack(spacing: 8) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 7, style: .continuous)
-                    .fill(LinearGradient(colors: [Color(red: 0.435, green: 0.827, blue: 0.690), Color(red: 0.357, green: 0.549, blue: 1.0)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 22, height: 22)
-                Text("U").font(.system(size: 12, weight: .bold, design: .rounded)).foregroundStyle(.white)
-            }
+            LeafMark().frame(width: 22, height: 22)
             Text("UniFlow").font(.system(size: 13, weight: .semibold)).foregroundStyle(.white.opacity(0.8))
             Spacer()
             Circle().fill(state.isReachable ? Color.green : Color.red).frame(width: 6, height: 6)

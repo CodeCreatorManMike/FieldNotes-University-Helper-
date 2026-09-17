@@ -25,9 +25,7 @@ struct PillView: View {
             Circle()
                 .fill(Color.black)
                 .frame(width: 38, height: 38)
-            Text("U")
-                .font(.system(size: 16, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
+            LeafMark().frame(width: 20, height: 20)
         }
         .frame(width: 54, height: 54)
         .padding(4)
