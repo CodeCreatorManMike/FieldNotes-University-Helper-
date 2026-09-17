@@ -57,6 +57,9 @@ def validate_record(kind, data):
         if data.get('snoozed'):
             try: datetime.strptime(data['snoozed'], '%Y-%m-%d')
             except ValueError: raise ValueError('Invalid snooze date.')
+        if data.get('reviewDue'):
+            try: datetime.strptime(data['reviewDue'], '%Y-%m-%d')
+            except ValueError: raise ValueError('Invalid review date.')
     elif kind == 'entry':
         if data.get('type') not in ('study', 'error', 'question', 'reflection', 'task'): raise ValueError('Unknown log type.')
         if not isinstance(data.get('text'), str) or not data['text'].strip(): raise ValueError('Write a note before saving.')

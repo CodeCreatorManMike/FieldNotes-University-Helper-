@@ -28,6 +28,7 @@ function validateRecord(kind, data) {
     if ('priority' in data && !(Number.isInteger(data.priority) && data.priority >= 0 && data.priority <= 3)) throw new Error('Invalid priority.');
     if ('known' in data && typeof data.known !== 'boolean') throw new Error('Invalid known flag.');
     if (data.snoozed && !isDateStr(data.snoozed)) throw new Error('Invalid snooze date.');
+    if (data.reviewDue && !isDateStr(data.reviewDue)) throw new Error('Invalid review date.');
   } else if (kind === 'entry') {
     if (!['study', 'error', 'question', 'reflection', 'task'].includes(data.type)) throw new Error('Unknown log type.');
     if (typeof data.text !== 'string' || !data.text.trim()) throw new Error('Write a note before saving.');
